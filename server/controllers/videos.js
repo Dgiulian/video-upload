@@ -1,5 +1,9 @@
-const { Videos } = require('../models/videos');
+const path = require('path');
+const fse = require('fs-extra');
+
 const { AsyncRay } = require('async-ray');
+const { Videos } = require('../models/videos');
+
 const { getVideoMetadata, takeVideoScreenshot } = require('../utils/videos');
 
 module.exports.list = async (req, res) => {
@@ -25,18 +29,37 @@ module.exports.upload = async (req, res) => {
 
   const savedFiles = await Promise.all(
     files.map(async (file) => {
-      return getVideoMetadata(file.path);
+      //return getVideoMetadata(file.path);
       // takeVideoScreenshot
 
-      /* const video = Videos({
+      const video = Videos({
         title: file.originalname,
+        path: file.path,
       });
       const savedVideo = await video.save();
-      return savedVideo; */
+      return savedVideo;
     })
   );
 
   res.json({ files: savedFiles });
+};
+
+module.exports.streamVideo = async (req, res) => {
+  try {
+    const video = await Videos.findById(req.params.videoId);
+
+    console.log(video);
+    // Set
+    res.set('Content-type', 'video/mp4');
+    res.set('accept-ranges', 'bytes');
+    const readable = fse.createReadStream(path.resolve(video.path));
+    readable.pipe(res);
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(400)
+      .json({ error: true, message: 'Could not load video' });
+  }
 };
 
 module.exports.delete = async (req, res) => {};
