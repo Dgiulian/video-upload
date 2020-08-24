@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "server": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "async-ray": "^3.2.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.1",
+    "fluent-ffmpeg": "^2.1.2",
+    "mongoose": "^5.10.0",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

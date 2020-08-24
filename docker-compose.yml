@@ -1,0 +1,31 @@
+version: "3"
+services:
+  mongodb:
+    image: mongo:3.4-xenial
+    volumes: 
+      - mongo_data:/data/db
+      - mongo_config:/data/configdb
+    ports: 
+      - "27017:27017"
+  web:
+    image: mongoclient/mongoclient
+    ports:
+      - "3003:3003"
+    volumes: 
+      - mclient_data:/data/db 
+
+#  web2:
+#    image: mongo-express
+#    environment: 
+#      ME_CONFIG_MONGODB_SERVER: mongodb
+#    ports: 
+#      - "8081:8081"
+#    links:
+#      - "mongodb"
+#    depends_on: 
+#      - mongodb
+
+volumes:
+  mongo_data:
+  mongo_config:
+  mclient_data:
