@@ -14,4 +14,6 @@ router.post('/upload', upload.array('videos'), videosController.upload);
 
 router.get('/stream/:videoId', videosController.streamVideo);
 
+router.delete('/:videoId', videosController.delete);
+
 module.exports = router;

@@ -62,4 +62,15 @@ module.exports.streamVideo = async (req, res) => {
   }
 };
 
-module.exports.delete = async (req, res) => {};
+module.exports.delete = async (req, res) => {
+  const { videoId } = req.params;
+  if (!videoId) {
+    res.json({ error: true, message: 'Video not found' });
+  }
+  try {
+    const video = await Videos.findOneAndDelete({ _id: videoId });
+    res.json({ video });
+  } catch (error) {
+    console.error(error);
+  }
+};
