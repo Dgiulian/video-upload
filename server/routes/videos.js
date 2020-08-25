@@ -10,7 +10,7 @@ var router = Router();
 router.get('/', videosController.list);
 
 /* POST videos. */
-router.post('/upload', upload.array('videos'), videosController.upload);
+router.post('/upload', upload.single('videos'), videosController.upload);
 
 router.get('/stream/:videoId', videosController.streamVideo);
 

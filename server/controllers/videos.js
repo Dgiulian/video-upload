@@ -1,7 +1,6 @@
 const path = require('path');
 const fse = require('fs-extra');
 
-const { AsyncRay } = require('async-ray');
 const { Videos } = require('../models/videos');
 
 const { getVideoMetadata, takeVideoScreenshot } = require('../utils/videos');
@@ -14,34 +13,33 @@ module.exports.list = async (req, res) => {
 module.exports.getById = async (req, res) => {};
 
 module.exports.upload = async (req, res) => {
-  const { files } = req;
+  const { file } = req;
 
-  /*
-   { fieldname: 'videos',
-    originalname: '004 Shortcomings of RESTful Routing.mp4',
-    encoding: '7bit',
-    mimetype: 'video/mp4',
-    destination: 'uploads/',
-    filename: 'ba593bb0ea2c76f17b1eba85d6307175',
-    path: 'uploads\\ba593bb0ea2c76f17b1eba85d6307175',
-    size: 13271728 }
-  */
+  try {
+    if (!file) {
+      throw new Error('No file selected');
+    }
 
-  const savedFiles = await Promise.all(
-    files.map(async (file) => {
-      //return getVideoMetadata(file.path);
-      // takeVideoScreenshot
+    const metadata = await getVideoMetadata(file.path);
+    const screenshotName = `${file.filename}.png`;
+    const extension = path.extname(file.originalname);
 
-      const video = Videos({
-        title: file.originalname,
-        path: file.path,
-      });
-      const savedVideo = await video.save();
-      return savedVideo;
-    })
-  );
+    await takeVideoScreenshot({
+      fileName: file.path,
+      output: path.resolve('public', 'screenshots', screenshotName),
+    });
 
-  res.json({ files: savedFiles });
+    const video = Videos({
+      title: file.originalname,
+      path: file.path,
+      extension,
+      screenshot: screenshotName,
+    });
+    const savedVideo = await video.save();
+    res.json({ files: savedVideo });
+  } catch (error) {
+    res.json({ error: true, message: error });
+  }
 };
 
 module.exports.streamVideo = async (req, res) => {

@@ -5,17 +5,17 @@ const ffprobe = promisify(ffmpeg.ffprobe);
 module.exports.getVideoMetadata = async function (fileName) {
   try {
     if (!fileName) {
-      return Promise.reject(null);
+      return Promise.reject('No input file');
     }
     return ffprobe(fileName);
   } catch (error) {
     return Promise.reject(error);
   }
 };
-module.exports.takeVideoScreenshot = function (
-  fileName,
-  { output = '', time }
-) {
+module.exports.takeVideoScreenshot = function ({ fileName, output }) {
+  if (!fileName) return Promise.reject('No input file');
+  if (!output) return Promise.reject('No output file');
+
   return new Promise((resolve, reject) =>
     ffmpeg(fileName)
       .screenshots({
