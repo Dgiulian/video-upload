@@ -35,8 +35,8 @@ module.exports.upload = async (req, res) => {
     const audio_codec = getMetadataExtractor('audio', 'codec_name')(metadata);
 
     await takeVideoScreenshot({
-      fileName: file.path,
-      output: path.resolve('public', 'screenshots', screenshotName),
+      fileName: path.resolve(file.path),
+      output: `%f.png`,
     });
 
     const video = Videos({
@@ -48,7 +48,6 @@ module.exports.upload = async (req, res) => {
       duration,
       width,
       height,
-
       screenshot: screenshotName,
     });
     const savedVideo = await video.save();

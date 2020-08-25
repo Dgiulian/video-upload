@@ -1,7 +1,8 @@
+const path = require('path');
 const ffmpeg = require('../ffmpeg');
 const { promisify } = require('util');
-const ffprobe = promisify(ffmpeg.ffprobe);
 
+const ffprobe = promisify(ffmpeg.ffprobe);
 module.exports.getVideoMetadata = async function (fileName) {
   try {
     if (!fileName) {
@@ -21,7 +22,7 @@ module.exports.takeVideoScreenshot = function ({ fileName, output }) {
       .screenshots({
         timemarks: ['50%'],
         filename: output,
-        //folder,
+        folder: path.resolve('public', 'screenshots'),
       })
       .on('error', function (err) {
         reject('An error occurred: ' + err.message);
