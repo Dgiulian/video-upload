@@ -1,6 +1,15 @@
 import React from 'react';
 import Layout from '../components/Layout';
+import UploadForm from '../components/UploadForm';
+import { uploadFiles } from '../api';
 
 export function Upload() {
-  return <Layout>Upload</Layout>;
+  const handleUploadFiles = (files) => {
+    uploadFiles(files);
+  };
+  return (
+    <Layout>
+      <UploadForm onUploadFiles={handleUploadFiles} />
+    </Layout>
+  );
 }
