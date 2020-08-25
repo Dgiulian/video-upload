@@ -1,7 +1,8 @@
 import React from 'react';
 import { formatSeconds } from '../utils/date';
+import TrashFillIcon from './TrashFillIcon';
 
-export default function VideoCard({ video, onVideoSelect }) {
+export default function VideoCard({ video, onVideoSelect, onDelete }) {
   const screenshot = video.screenshot
     ? `http://localhost:3005/screenshots/${video.screenshot}`
     : 'https://dummyimage.com/420x260';
@@ -18,14 +19,20 @@ export default function VideoCard({ video, onVideoSelect }) {
           src={screenshot}
         />
       </button>
-      <div className="mt-4">
-        <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-          CATEGORY
-        </h3>
-        <h2 className="text-gray-900 title-font text-lg font-medium">
-          {video.title}
-        </h2>
-        <p className="mt-1">{duration}</p>
+      <div className="flex justify-between items-center">
+        <div className="mt-4">
+          <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+            CATEGORY
+          </h3>
+          <h2 className="text-gray-900 title-font text-lg font-medium">
+            {video.title}
+          </h2>
+
+          <p className="mt-1">{duration}</p>
+        </div>
+        <button onClick={() => onDelete(video._id)}>
+          <TrashFillIcon className="text-red-600 pointer" />
+        </button>
       </div>
     </div>
   );

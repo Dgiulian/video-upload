@@ -30,3 +30,10 @@ export const uploadFiles = async (files) => {
 
   console.log(response);
 };
+
+export const deleteVideo = (id) => {
+  return axios({
+    method: 'DELETE',
+    url: `${API_URL}/videos/${id}`,
+  });
+};
