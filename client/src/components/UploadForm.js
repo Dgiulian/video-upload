@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function UploadForm({ onUploadFiles }) {
+  const [isDraggedOver, setIsDraggedOver] = useState(false);
   const handleFileSelect = (e) => {
     onUploadFiles(e.target.files);
   };
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDraggedOver(true);
+  };
+  const handleDragLeave = (e) => {
+    e.preventDefault();
 
+    setIsDraggedOver(false);
+  };
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDraggedOver(false);
+    const files = Array.from(e.dataTransfer.files).filter((file) =>
+      file.type.startsWith('video/')
+    );
+    onUploadFiles(files);
+  };
   return (
     <form>
       <div>
@@ -13,10 +30,19 @@ export default function UploadForm({ onUploadFiles }) {
             <h2 className="leading-6 font-medium text-gray-700 text-lg">
               Upload Videos
             </h2>
-            <div className="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+            <div
+              className={`mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-dashed rounded-md ${
+                isDraggedOver ? 'border-blue-300' : 'border-gray-300'
+              }`}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+            >
               <div className="text-center">
                 <svg
-                  className="mx-auto h-12 w-12 text-gray-400"
+                  className={`mx-auto h-12 w-12 ${
+                    isDraggedOver ? 'text-blue-300' : 'text-gray-300'
+                  }`}
                   stroke="currentColor"
                   fill="none"
                   viewBox="0 0 48 48"
@@ -44,9 +70,6 @@ export default function UploadForm({ onUploadFiles }) {
                     />
                   </label>
                   or drag and drop
-                  <span className="text-sm text-gray-500 ml-1">
-                    (not implemented yet)
-                  </span>
                 </p>
                 {/* <p className="mt-1 text-xs text-gray-500">
                   Mp4, Flv, GIF up to 10MB
