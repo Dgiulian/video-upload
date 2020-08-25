@@ -3,7 +3,11 @@ const fse = require('fs-extra');
 
 const { Videos } = require('../models/videos');
 
-const { getVideoMetadata, takeVideoScreenshot } = require('../utils/videos');
+const {
+  getVideoMetadata,
+  takeVideoScreenshot,
+  getMetadataExtractor,
+} = require('../utils/videos');
 
 module.exports.list = async (req, res) => {
   const videos = await Videos.find();
@@ -24,6 +28,12 @@ module.exports.upload = async (req, res) => {
     const screenshotName = `${file.filename}.png`;
     const extension = path.extname(file.originalname);
 
+    const video_codec = getMetadataExtractor('video', 'codec_name')(metadata);
+    const duration = getMetadataExtractor('video', 'duration')(metadata);
+    const width = getMetadataExtractor('video', 'width')(metadata);
+    const height = getMetadataExtractor('video', 'height')(metadata);
+    const audio_codec = getMetadataExtractor('audio', 'codec_name')(metadata);
+
     await takeVideoScreenshot({
       fileName: file.path,
       output: path.resolve('public', 'screenshots', screenshotName),
@@ -33,6 +43,12 @@ module.exports.upload = async (req, res) => {
       title: file.originalname,
       path: file.path,
       extension,
+      video_codec,
+      audio_codec,
+      duration,
+      width,
+      height,
+
       screenshot: screenshotName,
     });
     const savedVideo = await video.save();

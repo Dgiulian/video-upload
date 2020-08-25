@@ -31,3 +31,12 @@ module.exports.takeVideoScreenshot = function ({ fileName, output }) {
       })
   );
 };
+
+module.exports.getMetadataExtractor = (type, name) => (metadata) => {
+  if (!metadata) return '';
+  const filteredStream = metadata.streams.find(
+    (stream) => stream.codec_type === type
+  );
+  if (!filteredStream) return '';
+  return filteredStream[name];
+};
