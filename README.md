@@ -1,19 +1,18 @@
 # Video Upload
 
-## TODO:
-### Client
-- [x] Use react-query
-- [x] Refresh video list after delete
-- [x] Implement drop videos
-- [ ] Setup tests
+Fullstack application to upload videos and extract audio and video codec and duration of each video and take screenshot and save the information in a mongodb database.
+
+This application is fully dockerized. To run:
+
+```sh
+docker-compose up -d 
+```
 
 
-### Server 
+## Backend
 
-- [ ] Refactor Videos Controller
-- [ ] Setup tests
+The server is built on Node using the express framework and MongoDB for the storage.
 
-### Docker 
+## Frontend
 
-- [ ] Configure server behind a reverse proxy / load balancer
-
+The frontend of the application is built on React using TailwindCSS framework.
