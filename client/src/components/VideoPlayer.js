@@ -1,6 +1,5 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { formatRelative } from 'date-fns/esm';
 
 const customStyles = {
   content: {

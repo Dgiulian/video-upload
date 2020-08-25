@@ -7,7 +7,7 @@ import VideoPlayer from './VideoPlayer';
 export default function VideoList({ videos }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [videoId, setVideoId] = useState(null);
-  const [mutate, { error, reset }] = useMutation(deleteVideo);
+  const [mutate] = useMutation(deleteVideo);
   const handleVideoSelect = (id) => {
     setModalIsOpen(true);
     setVideoId(id);
