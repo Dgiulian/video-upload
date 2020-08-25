@@ -1,33 +1,18 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 
 export default function UploadForm({ onUploadFiles }) {
-  const [files, setFiles] = useState([]);
-
   const handleFileSelect = (e) => {
-    setFiles(e.target.files);
+    onUploadFiles(e.target.files);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onUploadFiles(files);
-  };
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <div>
         <div className="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
           <div className="sm:col-span-6">
-            <label
-              htmlFor="cover_photo"
-              className="block text-sm  leading-6 font-medium text-gray-700 text-lg"
-            >
+            <h2 className="leading-6 font-medium text-gray-700 text-lg">
               Upload Videos
-              {files.length > 0 && (
-                <span className="text-sm text-gray-500">
-                  {files.length} selected. Click save to upload them
-                </span>
-              )}
-            </label>
+            </h2>
             <div className="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
               <div className="text-center">
                 <svg
@@ -71,7 +56,7 @@ export default function UploadForm({ onUploadFiles }) {
           </div>
         </div>
       </div>
-      <div className="mt-8 border-t border-gray-200 pt-5">
+      {/*       <div className="mt-8 border-t border-gray-200 pt-5">
         <div className="flex justify-end">
           <span className="inline-flex rounded-md shadow-sm">
             <Link
@@ -91,7 +76,7 @@ export default function UploadForm({ onUploadFiles }) {
             </button>
           </span>
         </div>
-      </div>
+      </div> */}
     </form>
   );
 }

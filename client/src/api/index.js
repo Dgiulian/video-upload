@@ -12,23 +12,18 @@ export const getVideos = async () => {
   } else return Promise.reject('An error has occured');
 };
 
-export const uploadFiles = async (files) => {
-  const formData = new FormData();
-  for (let file of files) {
-    formData.append('videos', file);
-    console.log(file);
-  }
-
-  const response = await axios({
-    method: 'POST',
-    url: `${API_URL}/videos/upload`,
-    data: formData,
-    /*  headers: {
-      'Content-Type': 'multipart/form-data',
-    }, */
-  });
-
-  console.log(response);
+export const uploadVideos = (files) => {
+  return Promise.all(
+    Array.from(files).map((file) => {
+      const formData = new FormData();
+      formData.append('videos', file);
+      return axios({
+        method: 'POST',
+        url: `${API_URL}/videos/upload`,
+        data: formData,
+      });
+    })
+  );
 };
 
 export const deleteVideo = (id) => {
