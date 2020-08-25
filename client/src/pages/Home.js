@@ -1,17 +1,16 @@
 import React from 'react';
+import { useQuery } from 'react-query';
+import { getVideos } from '../api';
 import Layout from '../components/Layout';
 import VideoList from '../components/VideoList';
-import { getVideos } from '../api';
-import { useQuery } from '../hooks/useQuery';
 
 export function Home() {
-  const { error, loading, data } = useQuery(getVideos);
-
+  const { status, data, error } = useQuery('videos', getVideos);
   return (
     <Layout>
-      {error && <h1>An error has occured</h1>}
-      {loading && <h1>Loading...</h1>}
-      {!error && !loading && <VideoList videos={data} />}
+      {status === 'error' && <h1>An error has occured {error.message}</h1>}
+      {status === 'loading' && <h1>Loading...</h1>}
+      {status === 'success' && <VideoList videos={data} />}
     </Layout>
   );
 }
