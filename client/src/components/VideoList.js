@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { useMutation, queryCache } from 'react-query';
+import { deleteVideo } from '../api';
 import VideoCard from './VideoCard';
 import VideoPlayer from './VideoPlayer';
-import { deleteVideo } from '../api';
 
 export default function VideoList({ videos }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [videoId, setVideoId] = useState(null);
-
+  const [mutate, { error, reset }] = useMutation(deleteVideo);
   const handleVideoSelect = (id) => {
     setModalIsOpen(true);
     setVideoId(id);
@@ -19,7 +20,9 @@ export default function VideoList({ videos }) {
       'Are you sure you want to delete the video?'
     );
     if (response) {
-      deleteVideo(id);
+      mutate(id).then(() => {
+        queryCache.invalidateQueries('videos');
+      });
     }
   };
   return (

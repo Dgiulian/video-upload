@@ -3,7 +3,7 @@
 ## TODO:
 ### Client
 - [x] Use react-query
-- [ ] Refresh video list after delete
+- [x] Refresh video list after delete
 - [x] Implement drop videos
 - [ ] Setup tests
 
