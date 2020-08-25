@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import { formatRelative } from 'date-fns/esm';
 
 const customStyles = {
   content: {
@@ -15,11 +16,18 @@ const customStyles = {
 export default function VideoPlayer({ isOpen, closeModal, videoId }) {
   return (
     <Modal isOpen={isOpen} onRequestClose={closeModal} style={customStyles}>
-      <button onClick={closeModal}>Close</button>
+      <button
+        onClick={closeModal}
+        className="absolute right-0 mr-4 pointer z-10"
+      >
+        Close
+      </button>
       <video
         src={`http://localhost:3005/videos/stream/${videoId}`}
         controls={true}
         autoPlay
+        loop
+        className="object-contain object-center w-full h-full block"
       />
     </Modal>
   );
