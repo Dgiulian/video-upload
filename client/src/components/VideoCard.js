@@ -4,7 +4,7 @@ import TrashFillIcon from './TrashFillIcon';
 
 export default function VideoCard({ video, onVideoSelect, onDelete }) {
   const screenshot = video.screenshot
-    ? `http://localhost:3005/screenshots/${video.screenshot}`
+    ? `${process.env.REACT_APP_API_URL}/screenshots/${video.screenshot}`
     : 'https://dummyimage.com/420x260';
   const duration = formatSeconds(video.duration);
   return (

@@ -15,6 +15,11 @@ services:
       - "3005:3005"
     volumes: 
         - ./server:/usr/app 
+    environment: 
+      - DATABASE=mongodb://mongodb:27017/camonapp
+      - NODE_ENV=production
+    depends_on:
+      - mongodb  
   client:
     build:
       context: ./client

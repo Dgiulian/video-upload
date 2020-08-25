@@ -22,7 +22,7 @@ export default function VideoPlayer({ isOpen, closeModal, videoId }) {
         Close
       </button>
       <video
-        src={`http://localhost:3005/videos/stream/${videoId}`}
+        src={`${process.env.REACT_APP_API_URL}/videos/stream/${videoId}`}
         controls={true}
         autoPlay
         loop
