@@ -12,11 +12,13 @@ export default function VideoCard({ video, onVideoSelect, onDelete }) {
       <button
         className="block relative h-48 rounded overflow-hidden"
         onClick={() => onVideoSelect(video._id)}
+        data-testid="select"
       >
         <img
-          alt="ecommerce"
+          alt="screenshot"
           className="object-cover object-center w-full h-full block"
           src={screenshot}
+          data-testid="screenshot"
         />
       </button>
       <div className="flex justify-between items-center">
@@ -29,9 +31,11 @@ export default function VideoCard({ video, onVideoSelect, onDelete }) {
             {video.title}
           </h2>
 
-          <p className="mt-1">{duration}</p>
+          <p className="mt-1" data-testid="duration">
+            {duration}
+          </p>
         </div>
-        <button onClick={() => onDelete(video._id)}>
+        <button onClick={() => onDelete(video._id)} data-testid="delete">
           <TrashFillIcon className="text-red-600 pointer" />
         </button>
       </div>
