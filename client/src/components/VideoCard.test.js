@@ -9,26 +9,14 @@ const videoProp = {
   title: 'video title.mp4',
   screenshot: 'screenshot.png',
   duration: 135.8,
-  video_codec: '',
-  audio_codec: '',
+  video_codec: 'h264',
+  audio_codec: 'aac',
 };
 
 describe('Video Card', () => {
-  test('it renders correctly', () => {
-    const { getByText, getByTestId, debug } = render(
-      <VideoCard video={videoProp} />
-    );
-
-    const titleElement = getByText('video title.mp4');
-    const durationElement = getByTestId('duration');
-    const screenshot = getByTestId('screenshot');
-
-    expect(titleElement).toBeInTheDocument();
-    expect(durationElement.textContent).toBe('02:15');
-    expect(screenshot).toHaveAttribute(
-      'src',
-      'http://localhost:3005/screenshots/screenshot.png'
-    );
+  test('it match snapshot', () => {
+    const wrapper = render(<VideoCard video={videoProp} />);
+    expect(wrapper).toMatchSnapshot();
   });
 
   test('it calls onDelete function with the appropiate argument', () => {
