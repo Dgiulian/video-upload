@@ -27,7 +27,7 @@ export default function VideoList({ videos }) {
   };
   return (
     <div className="flex flex-wrap -m-4">
-      {videos.length === 0 ? (
+      {!videos || !videos.length ? (
         <h1>No videos to display</h1>
       ) : (
         videos.map((video) => (
