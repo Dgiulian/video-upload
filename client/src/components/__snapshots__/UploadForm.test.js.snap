@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UploadForm It matches snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <form>
+        <div>
+          <div
+            class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6"
+          >
+            <div
+              class="sm:col-span-6"
+            >
+              <h2
+                class="leading-6 font-medium text-gray-700 text-lg"
+              >
+                Upload Videos
+              </h2>
+              <div
+                class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-dashed rounded-md border-gray-300"
+                data-testid="drop-files"
+              >
+                <div
+                  class="text-center"
+                >
+                  <svg
+                    class="mx-auto h-12 w-12 text-gray-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 48 48"
+                  >
+                    <path
+                      d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                    />
+                  </svg>
+                  <p
+                    class="mt-1 text-sm text-gray-600"
+                  >
+                    <label
+                      class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out mr-1 cursor-pointer "
+                      type="button"
+                    >
+                      Upload a video
+                      <input
+                        accept="video/*"
+                        class="hidden"
+                        multiple=""
+                        name="videos"
+                        type="file"
+                      />
+                    </label>
+                    or drag and drop
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>,
+  "container": <div>
+    <form>
+      <div>
+        <div
+          class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6"
+        >
+          <div
+            class="sm:col-span-6"
+          >
+            <h2
+              class="leading-6 font-medium text-gray-700 text-lg"
+            >
+              Upload Videos
+            </h2>
+            <div
+              class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-dashed rounded-md border-gray-300"
+              data-testid="drop-files"
+            >
+              <div
+                class="text-center"
+              >
+                <svg
+                  class="mx-auto h-12 w-12 text-gray-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 48 48"
+                >
+                  <path
+                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  />
+                </svg>
+                <p
+                  class="mt-1 text-sm text-gray-600"
+                >
+                  <label
+                    class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out mr-1 cursor-pointer "
+                    type="button"
+                  >
+                    Upload a video
+                    <input
+                      accept="video/*"
+                      class="hidden"
+                      multiple=""
+                      name="videos"
+                      type="file"
+                    />
+                  </label>
+                  or drag and drop
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

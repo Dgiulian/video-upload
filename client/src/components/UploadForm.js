@@ -37,6 +37,7 @@ export default function UploadForm({ onUploadFiles }) {
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
+              data-testid="drop-files"
             >
               <div className="text-center">
                 <svg
