@@ -1,14 +1,13 @@
 import React from 'react';
-import {
-  render,
-  cleanup,
-  fireEvent,
-  waitFor,
-  screen,
-  waitForElement,
-} from '@testing-library/react';
+import { deleteVideo } from '../api';
+
+import { render, cleanup, fireEvent, waitFor } from '@testing-library/react';
+// import { waitFor } from '@testing-library/jest-dom';
 import VideoList from './VideoList';
 import ReactModal from 'react-modal';
+import { act } from 'react-dom/test-utils';
+import userEvent from '@testing-library/user-event';
+// import { act } from 'react-dom/test-utils';
 
 const fakeVideos = [
   {
@@ -38,6 +37,14 @@ const fakeVideos = [
 ];
 
 ReactModal.setAppElement('*');
+const mockApi = {
+  __esModule: true, // this property makes it work
+  deleteVideo: jest.fn(),
+};
+
+jest.mock('../api', () => ({
+  deleteVideo: jest.fn(() => Promise.resolve()),
+}));
 
 describe('VideoList', () => {
   afterEach(cleanup);
@@ -62,5 +69,21 @@ describe('VideoList', () => {
 
     fireEvent.click(selectButtons[0]);
     expect(queryByText(/close/i)).toBeInTheDocument();
+  });
+
+  test('deleteVideo is called after a the button is clicked', async () => {
+    let confirmSpy = jest.spyOn(window, 'confirm');
+    confirmSpy.mockImplementation(jest.fn(() => true));
+    const { getAllByTestId, debug, getByText, rerender } = render(
+      <VideoList videos={fakeVideos} />
+    );
+    const deleteButtons = getAllByTestId('delete');
+
+    userEvent.click(deleteButtons[0]);
+    rerender();
+    expect(confirmSpy).toHaveBeenCalled();
+    await waitFor(() => expect(deleteVideo).toHaveBeenCalled());
+
+    confirmSpy.mockRestore();
   });
 });
