@@ -8,7 +8,7 @@ export default function VideoCard({ video, onVideoSelect, onDelete }) {
     : 'https://dummyimage.com/420x260';
   const duration = formatSeconds(video.duration);
   return (
-    <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
+    <div className="lg:w-1/4 md:w-1/2 p-4 w-full" data-testid="video-card">
       <button
         className="block relative h-48 rounded overflow-hidden"
         onClick={() => onVideoSelect(video._id)}
